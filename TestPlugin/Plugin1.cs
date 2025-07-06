@@ -191,7 +191,13 @@ namespace PluginTest
                         localPluginContext.Trace("FormatPhoneNumber: Clean number length >= 10, proceeding with international formatting");
                         // Example: +1 234 567 8900 or +44 20 1234 5678
                         localPluginContext.Trace($"FormatPhoneNumber: About to extract country code from: '{cleanNumber}'");
-                        var countryCode = cleanNumber.Substring(0, cleanNumber.StartsWith("+1") ? 2 : 3);
+                        var countryCodeLength = cleanNumber.StartsWith("+1") ? 2 : 3;
+                        if (cleanNumber.Length < countryCodeLength)
+                        {
+                            localPluginContext.Trace($"FormatPhoneNumber: Clean number too short ({cleanNumber.Length}) for expected country code length ({countryCodeLength}), returning as-is");
+                            return cleanNumber;
+                        }
+                        var countryCode = cleanNumber.Substring(0, countryCodeLength);
                         localPluginContext.Trace($"FormatPhoneNumber: Extracted country code: '{countryCode}'");
 
                         var remaining = cleanNumber.Substring(countryCode.Length);
