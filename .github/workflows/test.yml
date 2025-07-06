@@ -1,0 +1,35 @@
+name: Build and Tests
+
+on:
+  workflow_dispatch:   # allows manual trigger from GitHub UI
+  pull_request:
+   branches: [ master ]
+
+jobs:  
+  build:    
+    runs-on: windows-latest
+    
+    steps:      
+      - uses: actions/checkout@v2
+      
+      - name: Setup MSBuild
+        uses: microsoft/setup-msbuild@v1
+
+      - name: Setup NuGet
+        uses: NuGet/setup-nuget@v1.0.5
+        
+      - name: Setup VSTest
+        uses: darenm/Setup-VSTest@v1
+
+      - name: Navigate to Workspace
+        run: cd $GITHUB_WORKSPACE
+
+      - name: Restore Packages
+        run: nuget restore PluginTest.sln
+
+      - name: Build Solution
+        run: |
+          msbuild.exe PluginTest.sln /p:platform="Any CPU" /p:configuration="Release"
+        
+      - name: Run Tests
+        run: vstest.console.exe .\TestProject1\bin\Release\net4.6.2\PluginTest.test.dll

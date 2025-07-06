@@ -1,0 +1,1 @@
+dotnet.exe run --project "c:\\Users\\andre\\OneDrive\\Documents\\source\\McpServer\\McpServer\\McpServer.csproj"

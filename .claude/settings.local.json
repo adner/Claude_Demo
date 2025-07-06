@@ -1,0 +1,17 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(dotnet.exe:*)",
+      "Bash(git.exe:*)",
+      "Bash(gh.exe:*)",
+      "Bash(bash:*)",
+      "mcp__DataverseMcp__WhoAmI",
+      "mcp__DataverseMcp__ExecuteFetch"
+    ],
+    "deny": []
+  },
+  "enableAllProjectMcpServers": true,
+  "enabledMcpjsonServers": [
+    "DataverseMcp"
+  ]
+}

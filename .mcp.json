@@ -1,0 +1,10 @@
+{
+  "mcpServers": {
+    "DataverseMcp": {
+      "type": "stdio",
+      "command": "/mnt/c/Sandboxes/Claude_Github/dataverseMcp.sh",
+      "args": [],
+      "env": {}
+    }
+  }
+}

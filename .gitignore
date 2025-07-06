@@ -1,0 +1,41 @@
+# Binaries
+*.exe
+*.dll
+*.so
+*.dylib
+*.out
+*.class
+
+# Build output
+bin/
+obj/
+build/
+dist/
+*.o
+*.a
+*.lib
+*.pyc
+*.pyo
+*.log
+
+# System files
+.DS_Store
+Thumbs.db
+
+# IDEs and editors
+.vscode/
+.idea/
+*.suo
+*.user
+*.userosscache
+*.sln.docstates
+
+# Temporary files
+*.tmp
+*.bak
+*.swp
+*.~*
+
+# Package managers (optional)
+node_modules/
+packages/

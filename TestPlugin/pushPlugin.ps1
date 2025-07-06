@@ -1,0 +1,1 @@
+pac plugin push -id 14e89f8e-89bd-4135-ae1f-2c2ebd79ec24 -pf bin/Debug/net462/publish/PluginTest.dll -t Assembly
