@@ -308,6 +308,30 @@ namespace TestProject1
         }
 
         [Fact]
+        public void Test_plugin_handles_phone_with_no_digits()
+        {
+            var pluginContext = _fakedContext.GetDefaultPluginContext();
+            pluginContext.MessageName = "Update";
+
+            var guid1 = Guid.NewGuid();
+            var target = new Entity("contact") { Id = guid1 };
+            target.Attributes.Add("mobilephone", "+-()_");
+
+            ParameterCollection inputParameters = new ParameterCollection();
+            inputParameters.Add("Target", target);
+
+            ParameterCollection outputParameters = new ParameterCollection();
+            outputParameters.Add("id", guid1);
+
+            pluginContext.InputParameters = inputParameters;
+            pluginContext.OutputParameters = outputParameters;
+
+            _fakedContext.ExecutePluginWith<PluginTest.Plugin1>(pluginContext);
+
+            Assert.Equal("+-()_", target["mobilephone"]);
+        }
+
+        [Fact]
         public void Test_plugin_throws_exception_with_null_service_provider()
         {
             var plugin = new PluginTest.Plugin1();

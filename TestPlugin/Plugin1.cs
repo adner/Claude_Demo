@@ -170,7 +170,12 @@ namespace PluginTest
             localPluginContext.Trace($"FormatPhoneNumber: Cleaned number: '{cleanNumber}' (length: {cleanNumber.Length})");
 
             var digitOnlyLength = cleanNumber.Replace("+", "").Length;
-            var firstDigit = cleanNumber.Replace("+", "")[0]; 
+            if (digitOnlyLength == 0)
+            {
+                localPluginContext.Trace("FormatPhoneNumber: No digits found in input, returning original value");
+                return phoneNumber;
+            }
+            var firstDigit = cleanNumber.Replace("+", "")[0];
             localPluginContext.Trace($"FormatPhoneNumber: Digit-only length: {digitOnlyLength}");
 
             try
